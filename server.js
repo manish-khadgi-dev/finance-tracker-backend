@@ -7,13 +7,21 @@ import cors from "cors";
 import morgan from "morgan";
 
 //connect mongodb
-import connectMongo from "./src/config/dbConfig.js";
+import { connectMongo } from "./src/config/dbConfig.js";
 connectMongo();
 
 // middlewares
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
+
+//Routers
+import userRouter from "./src/routers/userRouter.js";
+
+// user router ti handle the user registration and  login
+app.use("/api/v1/user", userRouter);
+
+// transaction router to handle all the transcation related ot CRUD operation
 
 // uncaught router request
 app.use("*", (req, res, next) => {
@@ -39,4 +47,10 @@ app.use((error, req, res, next) => {
       message: error.message,
     });
   }
+});
+
+app.listen(PORT, (error) => {
+  error
+    ? console.log(error)
+    : console.log(`server is running ar http://localhost:${PORT}`);
 });

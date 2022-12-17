@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 // Schema is also a validator
 
-export const connectMongoDB = async () => {
+const connectMongoDB = () => {
   try {
     const mongoUrl = "mongodb://localhost:27017/ft-new";
     mongoose.set("strictQuery", true);
-    const conn = await mongoose.connect(mongoUrl);
+    const conn = mongoose.connect(mongoUrl);
 
     conn && console.log("Mongo Connected");
   } catch (error) {
@@ -14,4 +14,4 @@ export const connectMongoDB = async () => {
   }
 };
 
-export default mongoConnect;
+export default connectMongoDB;
