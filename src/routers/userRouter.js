@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser } from "../models/UserModel";
+import { createUser } from "../models/UserModel.js";
 
 const router = express.Router();
 
@@ -13,24 +13,25 @@ router.post("/", async (req, res, next) => {
   try {
     console.log(req.body);
     const result = await createUser(req.body);
+    console.log(result);
     result?._id
       ? res.json({
           status: "success",
           message: "New user Creted  ",
         })
       : res.json({
-          status: "success",
-          message: "To do insert user  ",
+          status: "error",
+          message: "unable insert user  ",
         });
   } catch (error) {
-    let message = error.message;
     if (error.message.includes("E11000")) {
-      message = "Email Already in Use ";
+      error.errorCode = 200;
+      error.message =
+        "This email has been used already, use different email or reset your password";
     }
-    res.json({
-      status: "error",
-      message: message,
-    });
+
     next(error);
   }
 });
+
+export default router;

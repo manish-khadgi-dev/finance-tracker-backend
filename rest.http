@@ -3,12 +3,12 @@ GET http://localhost:8000/
 
 # ============================= USER API
 
-### post new user
+### Post new users
 POST http://localhost:8000/api/v1/user
-Content-Type: applicaiton/json
+Content-Type: application/json
 
 {
     "name" : "manish",
-    "email" : "manishkhadgi@gmail.com",
-    "pin" : 1234,
+    "email" : "manishkhsfdfasdfasddfadgi@gmail.com",
+    "pin" : 12334
 }

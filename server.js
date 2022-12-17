@@ -7,7 +7,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 //connect mongodb
-import { connectMongo } from "./src/config/dbConfig.js";
+import connectMongo from "./src/config/dbConfig.js";
 connectMongo();
 
 // middlewares
